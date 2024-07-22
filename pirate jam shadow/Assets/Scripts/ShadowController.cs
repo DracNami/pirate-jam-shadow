@@ -7,6 +7,9 @@ public class ShadowController : MonoBehaviour
 
     public bool canTeleport;
     public bool backToPlayer = false;
+
+    [field: Header("Components")]
+    public GameObject ShadowAnchor;
     public GameObject Player;
     // Start is called before the first frame update
     void Start()
@@ -26,11 +29,16 @@ public class ShadowController : MonoBehaviour
         {
             backToPlayer = true;
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Player.transform.position = transform.position;
+            transform.position = ShadowAnchor.transform.position;
+        }
 
         if(backToPlayer)
         {
-            transform.position = Vector2.Lerp(transform.position, Player.transform.position, 0.006f);
-            if(transform.position == Player.transform.position)
+            transform.position = Vector2.Lerp(transform.position, ShadowAnchor.transform.position, 0.006f);
+            if(transform.position == ShadowAnchor.transform.position)
             {
                 backToPlayer = false;
             }
