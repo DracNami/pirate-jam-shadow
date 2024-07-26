@@ -47,8 +47,9 @@ public class GameManager : MonoBehaviour
 
         if(defend.time >= defend.timeToDefend)
         {
+            Debug.Log("compelted");
             objectivesCompelte++;
-            //spawnNextObjective = true;
+            spawnNextObjective = true;
         }
     }
     public void spawnDefend()
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckObjectives()
     {
-        Debug.Log(currentObjectiveType);
+        //Debug.Log(currentObjectiveType);
         switch(currentObjectiveType)
         {
             
