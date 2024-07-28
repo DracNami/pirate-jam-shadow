@@ -258,7 +258,7 @@ MonoBehaviour:
   spawnNextObjective: 0
   defendPrefab: {fileID: 6449168691273082332, guid: e390e43d14602204cab9d137ea11b397, type: 3}
   killPrefab: {fileID: 0}
-  collectPrefab: {fileID: 0}
+  collectPrefab: {fileID: 2209473777999093286, guid: 6b6f1042a3d183444b38c4c69dc2fc7d, type: 3}
 --- !u!4 &357736232
 Transform:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   MaximumWalkers: 10
   TileCount: 0
   FillPercentage: 0.4
-  WaitTime: 0.05
+  WaitTime: 0.001
 --- !u!4 &517312997
 Transform:
   m_ObjectHideFlags: 0

@@ -49,6 +49,19 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("compelted");
             objectivesCompelte++;
+            Destroy(defend.gameObject);
+            spawnNextObjective = true;
+        }
+    }
+    public void checkCollectObjective()
+    {
+        CollectObjective collect = currentObjective.GetComponent<CollectObjective>();
+
+        if(collect.collectedAll)
+        {
+            Debug.Log("compelted");
+            objectivesCompelte++;
+            Destroy(collect.gameObject);
             spawnNextObjective = true;
         }
     }
@@ -84,6 +97,7 @@ public class GameManager : MonoBehaviour
             case objTypes.Kill:
                 break;
             case objTypes.Collect: 
+                checkCollectObjective();
                 break;
         }
     }
@@ -101,7 +115,7 @@ public class GameManager : MonoBehaviour
                 //spawnKill();
                 break;
             case (int)objTypes.Collect:
-                //spawnCollect();
+                spawnCollect();
                 break;
         }
     }
