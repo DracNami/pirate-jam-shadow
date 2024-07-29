@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,15 +12,33 @@ public class PlayerController : MonoBehaviour
     [field: Header("Components")]
     public Rigidbody2D rb;
     public SpriteRenderer playerSprite;
+    public Animator ani;
 
+    public bool inResonance = false;
+    public bool isAttacking = false;
+    public static PlayerController instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
-        
+        //action = GetComponent<ActionController>();
     }
 
     private void Update()
     {
         GetInput();
+        Attack();
+    }
+
+    public void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        {
+            isAttacking = true;
+        }
     }
     void FixedUpdate()
     {
