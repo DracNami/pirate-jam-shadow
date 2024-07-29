@@ -259,6 +259,7 @@ MonoBehaviour:
   defendPrefab: {fileID: 6449168691273082332, guid: e390e43d14602204cab9d137ea11b397, type: 3}
   killPrefab: {fileID: 0}
   collectPrefab: {fileID: 2209473777999093286, guid: 6b6f1042a3d183444b38c4c69dc2fc7d, type: 3}
+  extractionPrefab: {fileID: 3464279302439392318, guid: e4f1f0f07d63ee94e8e26ddcaf18d880, type: 3}
 --- !u!4 &357736232
 Transform:
   m_ObjectHideFlags: 0

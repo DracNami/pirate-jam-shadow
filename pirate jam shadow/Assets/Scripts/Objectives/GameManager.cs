@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class GameManager : MonoBehaviour
     {
         Defend,
         Kill,
-        Collect
+        Collect,
+        Extract
     }
 
     public GameObject currentObjective;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject defendPrefab;
     [SerializeField] private GameObject killPrefab;
     [SerializeField] private GameObject collectPrefab;
+    [SerializeField] private GameObject extractionPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,11 +68,29 @@ public class GameManager : MonoBehaviour
             spawnNextObjective = true;
         }
     }
+    public void checkExtractObjective()
+    {
+        Extraction extract = currentObjective.GetComponent<Extraction>();
+
+        if (extract.time >= extract.timeToExtract)
+        {
+            Debug.Log("compelted");
+            objectivesCompelte++;
+            Destroy(extract.gameObject);
+            SceneManager.LoadScene("End Screen");
+        }
+    }
     public void spawnDefend()
     {
         currentObjective = Instantiate(defendPrefab);
         spawnNextObjective = false;
         currentObjectiveType = objTypes.Defend;
+    }
+    public void spawnExtraction()
+    {
+        currentObjective = Instantiate(extractionPrefab);
+        spawnNextObjective = false;
+        currentObjectiveType = objTypes.Extract;
     }
 
     public void spawnKill()
@@ -99,24 +120,34 @@ public class GameManager : MonoBehaviour
             case objTypes.Collect: 
                 checkCollectObjective();
                 break;
+            case objTypes.Extract:
+                checkExtractObjective();
+                break;
         }
     }
 
     public void SpawnObjective()
     {
-        int num = Random.Range(0, 3);
-        Debug.Log(num);
-        switch(num)
+        if (objectivesCompelte < 4)
         {
-            case (int)objTypes.Defend:
-                spawnDefend();
-                break;
-            case (int)objTypes.Kill:
-                //spawnKill();
-                break;
-            case (int)objTypes.Collect:
-                spawnCollect();
-                break;
+            int num = Random.Range(0, 3);
+            Debug.Log(num);
+            switch (num)
+            {
+                case (int)objTypes.Defend:
+                    spawnDefend();
+                    break;
+                case (int)objTypes.Kill:
+                    //spawnKill();
+                    break;
+                case (int)objTypes.Collect:
+                    spawnCollect();
+                    break;
+            }
+        }
+        else if (objectivesCompelte >= 4)
+        {
+            spawnExtraction();
         }
     }
 }
