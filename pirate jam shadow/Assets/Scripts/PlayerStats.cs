@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     public bool alive = true;                               //Player alive status
-    public int meter { get; private set; }                //stamina charge based system
+    public int meter = 0;                //stamina charge based system
     [SerializeField] int maxMeter = 100;                      //base maximum value for stamina
 
-    public int health { get; private set; }                 //health segmented
+    public int health = 100;                 //health segmented
     [SerializeField] int maxHealth = 100;                     //base maximum value for health
 
     public Slider healthBar;
@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviour
         healthBar.value = health;
 
         soulMeter.maxValue = maxMeter;
-        soulMeter.value = 0;
+        soulMeter.value = meter;
         //FullyHeal();
     }
 
