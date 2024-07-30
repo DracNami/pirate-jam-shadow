@@ -18,13 +18,18 @@ public class GameManager : MonoBehaviour
     public int objectivesCompelte;
     public bool spawnNextObjective;
     private objTypes currentObjectiveType;
+    public static GameManager instance;
 
     [field: Header("Components")]
     [SerializeField] private GameObject defendPrefab;
     [SerializeField] private GameObject killPrefab;
     [SerializeField] private GameObject collectPrefab;
     [SerializeField] private GameObject extractionPrefab;
-    // Start is called before the first frame update
+    [SerializeField] private WalkerGenerator walker;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         spawnNextObjective = true;
@@ -35,7 +40,7 @@ public class GameManager : MonoBehaviour
     {
         if(spawnNextObjective)
         {
-            SpawnObjective();
+            WalkerGenerator.Instance.SpawnObjectivesOnMap();
         }
 
         if(!spawnNextObjective)
@@ -80,28 +85,28 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("End Screen");
         }
     }
-    public void spawnDefend()
+    public void spawnDefend(int x, int y)
     {
-        currentObjective = Instantiate(defendPrefab);
+        currentObjective = Instantiate(defendPrefab, new Vector3(x, y, 0), Quaternion.identity);
         spawnNextObjective = false;
         currentObjectiveType = objTypes.Defend;
     }
-    public void spawnExtraction()
+    public void spawnExtraction(int x, int y)
     {
-        currentObjective = Instantiate(extractionPrefab);
+        currentObjective = Instantiate(extractionPrefab, new Vector3(x, y, 0), Quaternion.identity);
         spawnNextObjective = false;
         currentObjectiveType = objTypes.Extract;
     }
 
-    public void spawnKill()
+    public void spawnKill(int x, int y)
     {
-        currentObjective = Instantiate(killPrefab);
+        currentObjective = Instantiate(killPrefab, new Vector3(x, y, 0), Quaternion.identity);
         spawnNextObjective = false;
         currentObjectiveType = objTypes.Kill;
     }
-    public void spawnCollect()
+    public void spawnCollect(int x, int y)
     {
-        currentObjective = Instantiate(collectPrefab);
+        currentObjective = Instantiate(collectPrefab, new Vector3(x,y,0), Quaternion.identity);
         spawnNextObjective = false;
         currentObjectiveType = objTypes.Collect;
     }
@@ -126,7 +131,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnObjective()
+    public void SpawnObjective(int x, int y)
     {
         if (objectivesCompelte < 4)
         {
@@ -135,19 +140,19 @@ public class GameManager : MonoBehaviour
             switch (num)
             {
                 case (int)objTypes.Defend:
-                    spawnDefend();
+                    spawnDefend(x,y);
                     break;
                 case (int)objTypes.Kill:
                     //spawnKill();
                     break;
                 case (int)objTypes.Collect:
-                    spawnCollect();
+                    spawnCollect(x,y);
                     break;
             }
         }
         else if (objectivesCompelte >= 4)
         {
-            spawnExtraction();
+            spawnExtraction(x,y);
         }
     }
 }

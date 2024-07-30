@@ -30,6 +30,12 @@ public class WalkerGenerator : MonoBehaviour
 
     public GameObject Player;
     public GameObject Loading;
+
+    public static WalkerGenerator Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         InitializeGrid();
@@ -272,4 +278,11 @@ public class WalkerGenerator : MonoBehaviour
         PlayerController.instance.canMove = true;
     }
 
+    public void SpawnObjectivesOnMap()
+    {
+        int randomX = Random.Range(0, gridHandler.GetLength(0));
+        int randomY = Random.Range(0, gridHandler.GetLength(1));
+
+        GameManager.instance.SpawnObjective(randomX, randomY);
+    }
 }
