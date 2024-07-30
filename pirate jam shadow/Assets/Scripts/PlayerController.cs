@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public bool inResonance = false;
     public bool isAttacking = false;
+    public bool canMove = false;
     public static PlayerController instance;
 
     private void Awake()
@@ -52,15 +53,18 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        rb.MovePosition(rb.position + input * moveSpeed * Time.fixedDeltaTime);
+        if (canMove)
+        {
+            rb.MovePosition(rb.position + input * moveSpeed * Time.fixedDeltaTime);
 
-        if (input.x < 0)
-        {
-            playerSprite.flipX = true;
-        }
-        else if (input.x > 0)
-        {
-            playerSprite.flipX = false;
+            if (input.x < 0)
+            {
+                playerSprite.flipX = true;
+            }
+            else if (input.x > 0)
+            {
+                playerSprite.flipX = false;
+            }
         }
     }
 }

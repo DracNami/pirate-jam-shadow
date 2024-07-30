@@ -269,6 +269,7 @@ public class WalkerGenerator : MonoBehaviour
 
         }
         Loading.SetActive(false);
+        PlayerController.instance.canMove = true;
     }
 
 }
