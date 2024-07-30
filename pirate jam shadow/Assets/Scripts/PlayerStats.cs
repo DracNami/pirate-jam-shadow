@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
     public bool alive = true;                               //Player alive status
-    public int stamina { get; private set; }                //stamina charge based system
-    [SerializeField] int maxStamina = 3;                      //base maximum value for stamina
+    public int meter { get; private set; }                //stamina charge based system
+    [SerializeField] int maxMeter = 100;                      //base maximum value for stamina
 
     public int health { get; private set; }                 //health segmented
-    [SerializeField] int maxHealth = 3;                     //base maximum value for health
+    [SerializeField] int maxHealth = 100;                     //base maximum value for health
 
-    static public List<GameObject> healthList;              //Storing health objects
-    public GameObject healthImage;                          //prefab for health UI
-    public GameObject healthFolder;                         //group holding health UI
+    public Slider healthBar;
 
-    static public List<GameObject> staminaList;              //Storing stamina objects
-    public GameObject staminaImage;                          //prefab for stamina UI
-    public GameObject staminaFolder;                         //group holding stamina UI
+    public Slider soulMeter;                         //group holding stamina UI
 
     bool respawnLocal = false;                              //determines if the player will respawn in current scene or get sent back to hub
     public string hubSceneName;                              //scene to go to
@@ -29,9 +26,12 @@ public class PlayerStats : MonoBehaviour
     
     private void Start()
     {
-        healthList = new List<GameObject>();
-        staminaList = new List<GameObject>();
-        FullyHeal();
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
+
+        soulMeter.maxValue = maxMeter;
+        soulMeter.value = 0;
+        //FullyHeal();
     }
 
     protected void Awake()
@@ -42,12 +42,12 @@ public class PlayerStats : MonoBehaviour
     private void Update()
     {
         if (alive)
-        {//functionality that requires player to be alive
-
+        {
+            
         }
         else
         {
-            Respawn();
+            //Respawn();
         }
     }
     public void Respawn()
@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
-    public void UpdateUI()
+/*    public void UpdateUI()
     {
         if (healthList.Count != health)
         {
@@ -110,26 +110,26 @@ public class PlayerStats : MonoBehaviour
                 }
             }
         }
-    }
-    public void GainStamina(int value)                      //gain stamina not exceeding max
+    }*/
+    /*public void GainStamina(int value)                      //gain stamina not exceeding max
     {
         stamina += value;
-        if (stamina > maxStamina/*+number of stamina upgrades from future script*/)                     //idea for this is that in the save data or playerprefs, something, we can store how many upgrades the player has and use that here so we do not have to code backwards when adding upgrades, feel free to change tho if better idea
+        if (stamina > maxStamina*//*+number of stamina upgrades from future script*//*)                     //idea for this is that in the save data or playerprefs, something, we can store how many upgrades the player has and use that here so we do not have to code backwards when adding upgrades, feel free to change tho if better idea
         {
-            stamina = maxStamina/*+number of stamina upgrades from future script*/;
+            stamina = maxStamina*//*+number of stamina upgrades from future script*//*;
         }
-        UpdateUI();
-    }
-    public bool SpendStamina(int value)                     //Check if player has enough stamina to spend, if so spends and returns true
+        //UpdateUI();
+    }*/
+    /*public bool SpendStamina(int value)                     //Check if player has enough stamina to spend, if so spends and returns true
     {
         if (value <= stamina)
         {
             stamina -= value;
-            UpdateUI();
+            //UpdateUI();
             return true;
         }
         else return false;
-    }
+    }*/
     public void GainHealth(int value)                       //if alive, gain Health not exceeding max
     {
         if (alive)
@@ -137,28 +137,28 @@ public class PlayerStats : MonoBehaviour
             health += value;
             if (health > maxHealth/*+number of health upgrades from future script*/)
             {
-                stamina = maxStamina/*+number of health upgrades from future script*/;
+                health = maxHealth;
             }
         }
-        UpdateUI();
     }
     public void TakeDammage(int value)                      //if alive, lose health, if none remaining, kill player
     {
         if (alive)
         {
             health -= value;
+            healthBar.value = health;
             if (health >= 0)
             {
                 alive = false;
             }
         }
-        UpdateUI();
+        //UpdateUI();
     }
     public void FullyHeal()                                 //sets stamina and health to max, for use on level start or reviving
     {
-        stamina = maxStamina/*+number of stamina upgrades from future script*/;
+        meter = 0/*+number of stamina upgrades from future script*/;
         health = maxHealth/*+number of health upgrades from future script*/;
         alive = true;
-        UpdateUI();
+        //UpdateUI();
     }
 }

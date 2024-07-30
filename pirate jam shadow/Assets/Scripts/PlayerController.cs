@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     public void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !inResonance)
         {
             isAttacking = true;
         }
