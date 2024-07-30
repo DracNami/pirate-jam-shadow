@@ -16,6 +16,7 @@ public class WalkerGenerator : MonoBehaviour
     public Grid[,] gridHandler;
     public List<WalkerObject> Walkers;
     public Tilemap tileMap;
+    public Tilemap tileMapWall;
     public Tile Floor;
     public Tile Wall;
     public int MapWidth = 30;
@@ -175,25 +176,30 @@ public class WalkerGenerator : MonoBehaviour
 
                     if (gridHandler[x + 1, y] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x + 1, y, 0), Wall);
                         gridHandler[x + 1, y] = Grid.WALL;
                         hasCreatedWall = true;
                     }
                     if (gridHandler[x - 1, y] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+
                         gridHandler[x - 1, y] = Grid.WALL;
                         hasCreatedWall = true;
                     }
                     if (gridHandler[x, y + 1] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y + 1, 0), Wall);
                         gridHandler[x, y + 1] = Grid.WALL;
                         hasCreatedWall = true;
                     }
                     if (gridHandler[x, y - 1] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y - 1, 0), Wall);
                         gridHandler[x, y - 1] = Grid.WALL;
                         hasCreatedWall = true;
                     }
@@ -204,6 +210,55 @@ public class WalkerGenerator : MonoBehaviour
                     }
                 }
             }
+            
+        }
+        StartCoroutine(CreateOuterWalls());
+    }
+
+    IEnumerator CreateOuterWalls()
+    {
+        for (int x = 0; x < gridHandler.GetLength(0) - 1; x++)
+        {
+            for (int y = 0; y < gridHandler.GetLength(1) - 1; y++)
+            {
+                if (gridHandler[x, y] == Grid.WALL)
+                {
+                    bool hasCreatedWall = false;
+
+                    if (gridHandler[x + 1, y] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x - 1, y] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x, y + 1] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x, y - 1] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        hasCreatedWall = true;
+                    }
+
+                    if (hasCreatedWall)
+                    {
+                        yield return new WaitForSeconds(WaitTime);
+                    }
+                }
+            }
+
         }
     }
 
