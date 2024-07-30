@@ -11,6 +11,8 @@ public class ShadowController : MonoBehaviour
     [field: Header("Components")]
     public GameObject ShadowAnchor;
     public GameObject Player;
+
+    public bool wallCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +26,13 @@ public class ShadowController : MonoBehaviour
         {
             Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = Vector2.Lerp(transform.position, cursorPos,0.006f);
+            backToPlayer = false;
         }
         if(Input.GetKeyUp(KeyCode.Mouse1))
         {
             backToPlayer = true;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && canTeleport && !wallCheck)
         {
             Player.transform.position = transform.position;
             transform.position = ShadowAnchor.transform.position;
@@ -44,4 +47,37 @@ public class ShadowController : MonoBehaviour
             }
         }
     }
+
+   /* private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Floor")
+        {
+            canTeleport = true;
+        }
+        if (collision.gameObject.tag == "Wall")
+        {
+            canTeleport = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            canTeleport = true;
+        }
+        if (collision.gameObject.tag == "Wall")
+        {
+            canTeleport = false;
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            canTeleport = false;
+        }
+    }*/
 }

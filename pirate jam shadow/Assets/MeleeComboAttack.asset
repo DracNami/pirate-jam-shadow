@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bec1c97db6a1974ea80a480606aa241, type: 3}
+  m_Name: MeleeComboAttack
+  m_EditorClassIdentifier: 
+  DurationSeconds: 0.5
+  ExecTimeSeconds: 0
+  BaseCooldown: 0
+  Damage: 10
+  HitsToCombo: 3
+  TimeBuffer: 0.1
+  HitboxPrefab: {fileID: 6371477154723611104, guid: 57ea2b73b13ab654a94850eaff9f51f2, type: 3}
+  HitboxPrefab2: {fileID: 6371477154723611104, guid: b1fc27e6305b03c4cbe92567a80d5ff0, type: 3}
+  Hitbox: {fileID: 0}
+  Anim: 
+  Anim2: 
+  Anim3: 
+  ActionInterruptible: 0
+  IsInterruptableBy: []

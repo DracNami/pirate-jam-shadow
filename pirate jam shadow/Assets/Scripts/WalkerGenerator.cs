@@ -9,13 +9,15 @@ public class WalkerGenerator : MonoBehaviour
     {
         FLOOR,
         WALL,
-        EMPTY
+        EMPTY,
+        WALL2
     }
 
     //Variables
     public Grid[,] gridHandler;
     public List<WalkerObject> Walkers;
     public Tilemap tileMap;
+    public Tilemap tileMapWall;
     public Tile Floor;
     public Tile Wall;
     public int MapWidth = 30;
@@ -26,6 +28,15 @@ public class WalkerGenerator : MonoBehaviour
     public float FillPercentage = 0.4f;
     public float WaitTime = 0.05f;
 
+    public GameObject Player;
+    public GameObject Loading;
+    public EnemySpawner eSpawner;
+
+    public static WalkerGenerator Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         InitializeGrid();
@@ -33,6 +44,7 @@ public class WalkerGenerator : MonoBehaviour
 
     void InitializeGrid()
     {
+        Loading.SetActive(true);
         gridHandler = new Grid[MapWidth, MapHeight];
 
         for (int x = 0; x < gridHandler.GetLength(0); x++)
@@ -53,7 +65,7 @@ public class WalkerGenerator : MonoBehaviour
         Walkers.Add(curWalker);
 
         TileCount++;
-
+        Player.transform.position = TileCenter;
         StartCoroutine(CreateFloors());
     }
 
@@ -175,25 +187,30 @@ public class WalkerGenerator : MonoBehaviour
 
                     if (gridHandler[x + 1, y] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x + 1, y, 0), Wall);
                         gridHandler[x + 1, y] = Grid.WALL;
                         hasCreatedWall = true;
                     }
                     if (gridHandler[x - 1, y] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+
                         gridHandler[x - 1, y] = Grid.WALL;
                         hasCreatedWall = true;
                     }
                     if (gridHandler[x, y + 1] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y + 1, 0), Wall);
                         gridHandler[x, y + 1] = Grid.WALL;
                         hasCreatedWall = true;
                     }
                     if (gridHandler[x, y - 1] == Grid.EMPTY)
                     {
-                        tileMap.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        //tileMap.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y - 1, 0), Wall);
                         gridHandler[x, y - 1] = Grid.WALL;
                         hasCreatedWall = true;
                     }
@@ -204,7 +221,69 @@ public class WalkerGenerator : MonoBehaviour
                     }
                 }
             }
+            
         }
+        StartCoroutine(CreateOuterWalls());
     }
 
+    IEnumerator CreateOuterWalls()
+    {
+        for (int x = 0; x < gridHandler.GetLength(0) - 1; x++)
+        {
+            for (int y = 0; y < gridHandler.GetLength(1) - 1; y++)
+            {
+                if (gridHandler[x, y] == Grid.WALL&&x!=0&&y!=0&&x!= gridHandler.GetLength(0) - 2&&y!= gridHandler.GetLength(1) - 2)
+                {
+                    bool hasCreatedWall = false;
+
+                    if (gridHandler[x + 1, y] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x + 1, y, 0), Wall);
+                        gridHandler[x + 1, y] = Grid.WALL2;
+
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x - 1, y] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x - 1, y, 0), Wall);
+                        gridHandler[x - 1, y] = Grid.WALL2;
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x, y + 1] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y + 1, 0), Wall);
+                        gridHandler[x, y + 1] = Grid.WALL2;
+
+                        hasCreatedWall = true;
+                    }
+                    if (gridHandler[x, y - 1] == Grid.EMPTY)
+                    {
+                        //tileMap.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        tileMapWall.SetTile(new Vector3Int(x, y - 1, 0), Wall);
+                        gridHandler[x, y - 1] = Grid.WALL2;
+                        hasCreatedWall = true;
+                    }
+
+                    if (hasCreatedWall)
+                    {
+                        yield return new WaitForSeconds(WaitTime);
+                    }
+                }
+            }
+
+        }
+        eSpawner.Initial();
+        Loading.GetComponent<LoadingCover>().wGen = true;
+    }
+
+    public void SpawnObjectivesOnMap()
+    {
+        int randomX = Random.Range(0, gridHandler.GetLength(0));
+        int randomY = Random.Range(0, gridHandler.GetLength(1));
+
+        GameManager.instance.SpawnObjective(randomX, randomY);
+    }
 }
