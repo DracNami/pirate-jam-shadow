@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 124781052}
   - component: {fileID: 124781053}
   m_Layer: 0
-  m_Name: Soul Resonnance AOE
+  m_Name: Soul Resonance AOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
