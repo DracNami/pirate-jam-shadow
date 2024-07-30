@@ -30,6 +30,7 @@ public class WalkerGenerator : MonoBehaviour
 
     public GameObject Player;
     public GameObject Loading;
+    public EnemySpawner eSpawner;
 
     public static WalkerGenerator Instance;
     private void Awake()
@@ -274,8 +275,8 @@ public class WalkerGenerator : MonoBehaviour
             }
 
         }
-        Loading.SetActive(false);
-        PlayerController.instance.canMove = true;
+        eSpawner.Initial();
+        Loading.GetComponent<LoadingCover>().wGen = true;
     }
 
     public void SpawnObjectivesOnMap()
