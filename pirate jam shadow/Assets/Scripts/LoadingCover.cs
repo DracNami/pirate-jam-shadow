@@ -8,6 +8,7 @@ public class LoadingCover : MonoBehaviour
     public List<string> loads;
     int loadsIndex = 0;
     public TMP_Text text;
+    public TMP_Text whatDoingText;
     float timer = 0f;
     float waitTime = 0.2f;
     public bool wGen = false;
@@ -22,6 +23,14 @@ public class LoadingCover : MonoBehaviour
     {
         if (active)
         {
+            if (!wGen && !eSpawn)
+            {
+                whatDoingText.text = "Generating Map";
+            }
+            else if (wGen && !eSpawn)
+            {
+                whatDoingText.text = "Spawning Enemies";
+            }
             if (timer >= waitTime)
             {
                 text.text = loads[loadsIndex];
