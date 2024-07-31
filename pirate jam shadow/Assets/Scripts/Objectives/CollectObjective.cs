@@ -31,7 +31,7 @@ public class CollectObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(collected == collectables)
+        if(collected >= collectables)
         {
             collectedAll = true;
         }
