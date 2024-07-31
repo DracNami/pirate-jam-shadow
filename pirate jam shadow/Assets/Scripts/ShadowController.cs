@@ -47,37 +47,45 @@ public class ShadowController : MonoBehaviour
             }
         }
     }
-
-   /* private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Enemy")
         {
-            canTeleport = true;
-        }
-        if (collision.gameObject.tag == "Wall")
-        {
-            canTeleport = false;
+            EnemyScript enemy=collision.GetComponent<EnemyScript>();
+            enemy.tagged = true;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            canTeleport = true;
-        }
-        if (collision.gameObject.tag == "Wall")
-        {
-            canTeleport = false;
-        }
+    /* private void OnTriggerEnter2D(Collider2D collision)
+     {
+         if(collision.gameObject.tag == "Floor")
+         {
+             canTeleport = true;
+         }
+         if (collision.gameObject.tag == "Wall")
+         {
+             canTeleport = false;
+         }
+     }
 
-    }
+     private void OnTriggerStay2D(Collider2D collision)
+     {
+         if (collision.gameObject.tag == "Floor")
+         {
+             canTeleport = true;
+         }
+         if (collision.gameObject.tag == "Wall")
+         {
+             canTeleport = false;
+         }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            canTeleport = false;
-        }
-    }*/
+     }
+
+     private void OnTriggerExit2D(Collider2D collision)
+     {
+         if (collision.gameObject.tag == "Floor")
+         {
+             canTeleport = false;
+         }
+     }*/
 }
