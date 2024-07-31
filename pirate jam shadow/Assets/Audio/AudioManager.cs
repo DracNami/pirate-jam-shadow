@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip bgmClip;
     private AudioClip bgmClipLastUpdate;
     private Scene sceneLastUpdate;
-    public List<SFX> sfxList;
+    public SFX[] sfxList;
     public GameObject sfx3dOneshot;
 
     private void Awake()
@@ -58,7 +58,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    void PlaySFX2d(string sfxName)
+    public void PlaySFX2d(string sfxName)
     {
         if (sfxName == null)
         {
@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            for (var index = 0; index < sfxList.Count; index++)
+            for (var index = 0; index < sfxList.Length; index++)
             {
                 if (sfxName == sfxList[index].sfxName)
                 {
@@ -80,7 +80,7 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-    void PlaySFX3d(string sfxName, Transform targetTrans)
+    public void PlaySFX3d(string sfxName, Transform targetTrans)
     {
         //target trans cameo :3 we be targeting trans people for our love and affection
         if (sfxName == null)
@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            for (var index = 0; index < sfxList.Count; index++)
+            for (var index = 0; index < sfxList.Length; index++)
             {
                 if (sfxName == sfxList[index].sfxName)
                 {

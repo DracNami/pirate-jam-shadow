@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !inResonance)
         {
             isAttacking = true;
-
+            AudioManager.Instance.PlaySFX2d("PlayerAttack");
         }
     }
     void FixedUpdate()

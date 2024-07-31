@@ -83,6 +83,7 @@ public class PlayerStats : MonoBehaviour
         {
             health -= value;
             healthBar.value = health;
+            AudioManager.Instance.PlaySFX2d("PlayerHurt");
             if (health <= 0)
             {
                 alive = false;

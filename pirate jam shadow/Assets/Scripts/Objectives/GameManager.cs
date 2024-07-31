@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         }
         if(PlayerStats.instance.health <= 0)
         {
+            AudioManager.Instance.PlaySFX2d("PlayerDie");
             SceneManager.LoadScene("Main Menu");
         }
     }

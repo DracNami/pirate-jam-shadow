@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFX : MonoBehaviour
+[System.Serializable]
+public class SFX
 {
     public string sfxName;
     public List<AudioClip> clips;

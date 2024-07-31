@@ -23,6 +23,7 @@ public class EnemyScript : MonoBehaviour
     public void TakeDmg(int value)
     {
         health -= value;
+        AudioManager.Instance.PlaySFX2d("FoeHurt");
     }
     void Update()
     {

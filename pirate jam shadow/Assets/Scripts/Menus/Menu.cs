@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
 {
     public void swapScene(string s)
     {
+        AudioManager.Instance.PlaySFX2d("ButtonPress");
         SceneManager.LoadScene(s);
     }
 
