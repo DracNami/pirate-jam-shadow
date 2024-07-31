@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     public bool alive = true;                               //Player alive status
-    public int meter = 0;                //stamina charge based system
+    public float meter = 0;                //stamina charge based system
     [SerializeField] int maxMeter = 100;                      //base maximum value for stamina
 
     public int health = 100;                 //health segmented

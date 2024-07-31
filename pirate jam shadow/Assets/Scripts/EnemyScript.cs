@@ -20,7 +20,7 @@ public class EnemyScript : MonoBehaviour
         pStats = Player.gameObject.GetComponent<PlayerStats>();
         health = maxHealth;
     }
-    void TakeDmg(int value)
+    public void TakeDmg(int value)
     {
         health -= value;
     }

@@ -245,13 +245,14 @@ GameObject:
   m_Component:
   - component: {fileID: 124781052}
   - component: {fileID: 124781053}
+  - component: {fileID: 124781054}
   m_Layer: 0
   m_Name: Soul Resonance AOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &124781052
 Transform:
   m_ObjectHideFlags: 0
@@ -302,6 +303,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
+--- !u!114 &124781054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124781051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c72a5495e580244e98c2706b3d60ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &148093240
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +657,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1712,9 +1725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147887282}
   - component: {fileID: 1147887285}
-  - component: {fileID: 1147887284}
   - component: {fileID: 1147887283}
-  - component: {fileID: 1147887286}
   m_Layer: 0
   m_Name: Circle (1)
   m_TagString: Shadow
@@ -1752,7 +1763,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1772,23 +1783,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.000000059604645}
   serializedVersion: 2
   m_Radius: 0.49999994
---- !u!114 &1147887284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147887281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3dc367d042a7504ea491c4f01df8af5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canTeleport: 0
-  backToPlayer: 0
-  ShadowAnchor: {fileID: 1014179130}
-  Player: {fileID: 1326936614}
-  wallCheck: 0
 --- !u!212 &1147887285
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1841,19 +1835,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1147887286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147887281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865b29a465bb1a242956ae7af6b9cdf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shadow: {fileID: 353645680}
 --- !u!1 &1167888314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,11 +1994,13 @@ MonoBehaviour:
   rb: {fileID: 1326936619}
   playerSprite: {fileID: 1326936616}
   ani: {fileID: 1326936620}
+  resonanceAOE: {fileID: 124781051}
   inResonance: 0
   isAttacking: 0
   canMove: 0
   PlayerCollider: {fileID: 0}
   PlayerBlockerCollider: {fileID: 0}
+  resonanceTime: 0
 --- !u!212 &1326936616
 SpriteRenderer:
   m_ObjectHideFlags: 0

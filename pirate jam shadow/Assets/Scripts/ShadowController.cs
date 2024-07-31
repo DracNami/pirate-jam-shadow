@@ -22,7 +22,7 @@ public class ShadowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Mouse1))
+        if(Input.GetKey(KeyCode.Mouse1) && !PlayerController.instance.inResonance)
         {
             Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = Vector2.Lerp(transform.position, cursorPos,0.006f);
@@ -32,7 +32,7 @@ public class ShadowController : MonoBehaviour
         {
             backToPlayer = true;
         }
-        if (Input.GetKeyDown(KeyCode.E) && canTeleport && !wallCheck)
+        if (Input.GetKeyDown(KeyCode.E) && canTeleport && !wallCheck && !PlayerController.instance.inResonance)
         {
             Player.transform.position = transform.position;
             transform.position = ShadowAnchor.transform.position;
@@ -52,7 +52,14 @@ public class ShadowController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             EnemyScript enemy=collision.GetComponent<EnemyScript>();
-            enemy.tagged = true;
+            
+            if(!enemy.tagged)
+            {
+                enemy.tagged = true;
+                PlayerStats.instance.meter += 5;
+                PlayerStats.instance.soulMeter.value = PlayerStats.instance.meter;
+            }
+            
         }
     }
 

@@ -15,7 +15,15 @@ public class CollectObjective : MonoBehaviour
         collectables = Random.Range(1, 5);
         for (int i = 0; i < collectables; i++)
         {
-            Vector2 randomSpawnPosition = new Vector2(Random.Range(-10, 11), Random.Range(-10,11));
+            int randomX = Random.Range(0, WalkerGenerator.Instance.gridHandler.GetLength(0));
+            int randomY = Random.Range(0, WalkerGenerator.Instance.gridHandler.GetLength(1));
+
+            while (WalkerGenerator.Instance.gridHandler[randomX, randomY] != WalkerGenerator.Grid.FLOOR)
+            {
+                randomX = Random.Range(0, WalkerGenerator.Instance.gridHandler.GetLength(0));
+                randomY = Random.Range(0, WalkerGenerator.Instance.gridHandler.GetLength(1));
+            }
+            Vector2 randomSpawnPosition = new Vector2(randomX, randomY);
             Instantiate(collectablePrefab,randomSpawnPosition,Quaternion.identity,transform);
         }
     }

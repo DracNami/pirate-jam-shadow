@@ -284,6 +284,12 @@ public class WalkerGenerator : MonoBehaviour
         int randomX = Random.Range(0, gridHandler.GetLength(0));
         int randomY = Random.Range(0, gridHandler.GetLength(1));
 
+        while (gridHandler[randomX, randomY] != Grid.FLOOR)
+        {
+             randomX = Random.Range(0, gridHandler.GetLength(0));
+             randomY = Random.Range(0, gridHandler.GetLength(1));
+        }
+
         GameManager.instance.SpawnObjective(randomX, randomY);
     }
 }

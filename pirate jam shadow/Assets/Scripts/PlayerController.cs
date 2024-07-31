@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public SpriteRenderer playerSprite;
     public Animator ani;
+    public GameObject resonanceAOE;
 
     public bool inResonance = false;
     public bool isAttacking = false;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     public Collider PlayerCollider;
     public Collider PlayerBlockerCollider;
+    public float resonanceTime;
 
     private void Awake()
     {
@@ -36,6 +38,25 @@ public class PlayerController : MonoBehaviour
     {
         GetInput();
         Attack();
+
+        if (PlayerStats.instance.meter >= 100 && !inResonance)
+        {
+            inResonance = true;
+            resonanceAOE.SetActive(true);
+        }
+
+        if(inResonance)
+        {
+            PlayerStats.instance.meter -= Time.deltaTime * 3;
+            PlayerStats.instance.soulMeter.value = PlayerStats.instance.meter;
+            if(PlayerStats.instance.meter <= 0)
+            {
+                PlayerStats.instance.meter = 0;
+                PlayerStats.instance.soulMeter.value = PlayerStats.instance.meter;
+                inResonance = false;
+                resonanceAOE.SetActive(false);
+            }
+        }
     }
 
     public void Attack()
