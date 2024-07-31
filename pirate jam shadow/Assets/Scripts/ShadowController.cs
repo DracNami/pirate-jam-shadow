@@ -56,7 +56,7 @@ public class ShadowController : MonoBehaviour
             if(!enemy.tagged)
             {
                 enemy.tagged = true;
-                PlayerStats.instance.meter += 50;
+                PlayerStats.instance.meter += 5;
                 PlayerStats.instance.soulMeter.value = PlayerStats.instance.meter;
             }
             
