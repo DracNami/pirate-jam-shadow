@@ -1993,13 +1993,13 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 1326936619}
   playerSprite: {fileID: 1326936616}
+  resonanceSprite: {fileID: 21300000, guid: d5d4ad5d1fc41804aa7473bf9d47fb48, type: 3}
+  flameSprite: {fileID: 21300000, guid: 748b03efe4df0d84ab7ec921f23debd8, type: 3}
   ani: {fileID: 1326936620}
   resonanceAOE: {fileID: 124781051}
   inResonance: 0
   isAttacking: 0
   canMove: 0
-  PlayerCollider: {fileID: 0}
-  PlayerBlockerCollider: {fileID: 0}
   resonanceTime: 0
 --- !u!212 &1326936616
 SpriteRenderer:
@@ -2042,7 +2042,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 2aebb20d206e04c429d1e9559b3eef9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 748b03efe4df0d84ab7ec921f23debd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
