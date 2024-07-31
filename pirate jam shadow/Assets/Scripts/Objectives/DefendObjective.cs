@@ -18,7 +18,7 @@ public class DefendObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(increaseTime || !enemiesInside)
+        if(increaseTime && !enemiesInside)
         {
             time += Time.deltaTime;
         }

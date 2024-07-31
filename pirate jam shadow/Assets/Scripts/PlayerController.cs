@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public GameObject comboHitbox1;
     public GameObject comboHitbox2;
     public GameObject comboHitbox3;
+    public GameObject fireParent;
 
 
     public bool inResonance = false;
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        //action = GetComponent<ActionController>();
+        
     }
 
     private void Update()
@@ -45,8 +47,9 @@ public class PlayerController : MonoBehaviour
         {
             inResonance = true;
             resonanceAOE.SetActive(true);
-            playerSprite.sprite = resonanceSprite;
             AudioManager.Instance.EnableResonanceBGM(true);
+            fireParent.GetComponentInChildren<VisualEffect>().Stop();
+            ani.SetBool("inRes", true);
         }
 
         if(inResonance)
@@ -59,7 +62,8 @@ public class PlayerController : MonoBehaviour
                 PlayerStats.instance.soulMeter.value = PlayerStats.instance.meter;
                 inResonance = false;
                 resonanceAOE.SetActive(false);
-                playerSprite.sprite = flameSprite;
+                ani.SetBool("inRes", false);
+                fireParent.GetComponentInChildren<VisualEffect>().Stop();
                 AudioManager.Instance.EnableResonanceBGM(false);
             }
         }
@@ -95,6 +99,7 @@ public class PlayerController : MonoBehaviour
                 comboHitbox1.gameObject.transform.localScale = new Vector3(-1, 1, 1);
                 comboHitbox2.gameObject.transform.localScale = new Vector3(-1, 1, 1);
                 comboHitbox3.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                fireParent.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
             else if (input.x > 0)
             {
@@ -102,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 comboHitbox1.gameObject.transform.localScale = new Vector3(1, 1, 1);
                 comboHitbox2.gameObject.transform.localScale = new Vector3(1, 1, 1);
                 comboHitbox3.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                fireParent.gameObject.transform.localScale = new Vector3(1, 1, 1);
             }
         }
     }
