@@ -12,8 +12,8 @@ public class EnemyScript : MonoBehaviour
     public float atksPerSecond=0.5f;
     public int dmg = 1;
     float atkTimer = 0f;
-    public int maxHealth = 3;
-    int health = 3;
+    public int maxHealth = 60;
+    public int health = 60;
     void Start()
     {
         Player = FindObjectOfType<PlayerController>().gameObject;

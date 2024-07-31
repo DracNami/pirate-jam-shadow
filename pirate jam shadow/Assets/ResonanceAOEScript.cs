@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class ResonanceAOEScript : MonoBehaviour
 {
+    bool gainingHealth;
+    private void FixedUpdate()
+    {
+        if(gainingHealth)
+        {
+            PlayerStats.instance.GainHealth(3);
+            PlayerStats.instance.healthBar.value = PlayerStats.instance.health;
+            gainingHealth = false;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         
@@ -16,8 +26,7 @@ public class ResonanceAOEScript : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDmg(10);
-                PlayerStats.instance.health += 3;
-                PlayerStats.instance.healthBar.value = PlayerStats.instance.health;
+                gainingHealth = true;
             }
             
         }

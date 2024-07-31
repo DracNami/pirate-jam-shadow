@@ -49,7 +49,7 @@ public class ShadowController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && Input.GetKey(KeyCode.Mouse1))
         {
             EnemyScript enemy=collision.GetComponent<EnemyScript>();
             

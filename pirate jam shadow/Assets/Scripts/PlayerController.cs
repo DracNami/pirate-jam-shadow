@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     public Sprite flameSprite;
     public Animator ani;
     public GameObject resonanceAOE;
+    public GameObject comboHitbox1;
+    public GameObject comboHitbox2;
+    public GameObject comboHitbox3;
+
 
     public bool inResonance = false;
     public bool isAttacking = false;
@@ -66,6 +70,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !inResonance)
         {
             isAttacking = true;
+
         }
     }
     void FixedUpdate()
@@ -87,10 +92,16 @@ public class PlayerController : MonoBehaviour
             if (input.x < 0)
             {
                 playerSprite.flipX = true;
+                comboHitbox1.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                comboHitbox2.gameObject.transform.localScale = new Vector3(-1, 1, 1);
+                comboHitbox3.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
             else if (input.x > 0)
             {
                 playerSprite.flipX = false;
+                comboHitbox1.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                comboHitbox2.gameObject.transform.localScale = new Vector3(1, 1, 1);
+                comboHitbox3.gameObject.transform.localScale = new Vector3(1, 1, 1);
             }
         }
     }

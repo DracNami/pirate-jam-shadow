@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
         {
             CheckObjectives();
         }
+        if(PlayerStats.instance.health <= 0)
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
     }
 
     public void checkDefenseObjective()

@@ -282,4 +282,4 @@ MonoBehaviour:
   dmgP: 0
   atksPerSecond: 0.5
   dmg: 1
-  maxHealth: 3
+  maxHealth: 60
