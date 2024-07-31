@@ -18,10 +18,14 @@ public class PlayerController : MonoBehaviour
     public bool isAttacking = false;
     public bool canMove = false;
     public static PlayerController instance;
+    public Collider PlayerCollider;
+    public Collider PlayerBlockerCollider;
 
     private void Awake()
     {
         instance = this;
+        //Physics.IgnoreCollision(PlayerCollider, PlayerBlockerCollider, true);
+
     }
     void Start()
     {
