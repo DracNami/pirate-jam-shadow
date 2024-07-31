@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
                 inResonance = false;
                 resonanceAOE.SetActive(false);
                 ani.SetBool("inRes", false);
-                fireParent.GetComponentInChildren<VisualEffect>().Stop();
+                fireParent.GetComponentInChildren<VisualEffect>().Play();
                 AudioManager.Instance.EnableResonanceBGM(false);
             }
         }
