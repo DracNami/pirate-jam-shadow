@@ -50,6 +50,7 @@ MonoBehaviour:
   bgmSource: {fileID: 1609971314393686955}
   superBGMsource: {fileID: 3050693177483025489}
   sfxSource: {fileID: 3623682113434916407}
+  bgmClip: {fileID: 8300000, guid: ddcf4a92f798caa41aeb204b42eb4a9a, type: 3}
 --- !u!82 &1609971314393686955
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60,7 +61,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7735888290750037538, guid: a129d4b6d84dee8458d9dbeaa89ad9cd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 27a4e7bdc12182e4c9ed427e18e623e2, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -156,7 +157,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7735888290750037538, guid: a129d4b6d84dee8458d9dbeaa89ad9cd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 078564278f5169242af4aa07c5886bb7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 27006bb365731434caf87528a81d88b3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

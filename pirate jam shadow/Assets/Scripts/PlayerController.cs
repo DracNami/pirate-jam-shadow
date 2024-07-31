@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
             inResonance = true;
             resonanceAOE.SetActive(true);
             playerSprite.sprite = resonanceSprite;
+            AudioManager.Instance.EnableResonanceBGM(true);
         }
 
         if(inResonance)
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
                 inResonance = false;
                 resonanceAOE.SetActive(false);
                 playerSprite.sprite = flameSprite;
+                AudioManager.Instance.EnableResonanceBGM(false);
             }
         }
     }
