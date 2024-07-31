@@ -51,6 +51,8 @@ MonoBehaviour:
   superBGMsource: {fileID: 3050693177483025489}
   sfxSource: {fileID: 3623682113434916407}
   bgmClip: {fileID: 8300000, guid: ddcf4a92f798caa41aeb204b42eb4a9a, type: 3}
+  sfxList: []
+  sfx3dOneshot: {fileID: 4541404297329861627, guid: 9413e302baefcdb4e8f0bb13bd0d8e06, type: 3}
 --- !u!82 &1609971314393686955
 AudioSource:
   m_ObjectHideFlags: 0
